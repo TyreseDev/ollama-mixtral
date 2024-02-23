@@ -2,8 +2,10 @@
 
 # Define variables
 DOCKER_HUB_USER="tyrese3915"
+BASE_IMAGE="pooyaharatian/runpod-ollama:0.0.7"
 IMAGE_NAME="runpod-ollama"
-IMAGE_TAG="mixtral"
+MODEL="mixtral"
+TAG_NAME="mixtral"
 
 # Create a temporary directory
 TEMP_DIR=$(mktemp -d)
@@ -15,19 +17,19 @@ echo "Dockerfile will be located at: $DOCKERFILE_PATH"
 
 # Generate Dockerfile
 cat > $DOCKERFILE_PATH <<EOF
-# Use pooyaharatian/runpod-ollama as the base
-FROM pooyaharatian/runpod-ollama:0.0.7
+# Use $BASE_IMAGE as the base
+FROM $BASE_IMAGE
 
-# Update the command to mixtral
-CMD ["mixtral"]
+# Update the command to $COMMAND
+CMD ["$COMMAND"]
 EOF
 
 # Navigate to Dockerfile directory (not strictly needed if using absolute path)
 cd $(dirname $DOCKERFILE_PATH)
 
 # Build Docker image
-echo "Building Docker image $DOCKER_HUB_USER/$IMAGE_NAME:$IMAGE_TAG..."
-docker build -t $DOCKER_HUB_USER/$IMAGE_NAME:$IMAGE_TAG .
+echo "Building Docker image $DOCKER_HUB_USER/$IMAGE_NAME:$TAG_NAME..."
+docker build -t $DOCKER_HUB_USER/$IMAGE_NAME:$TAG_NAME .
 
 # Check if build was successful
 if [[ $? -ne 0 ]]; then
@@ -47,7 +49,7 @@ fi
 
 # Push the Docker image
 echo "Pushing image to Docker Hub..."
-docker push $DOCKER_HUB_USER/$IMAGE_NAME:$IMAGE_TAG
+docker push $DOCKER_HUB_USER/$IMAGE_NAME:$TAG_NAME
 
 # Finish
 echo "Process completed."

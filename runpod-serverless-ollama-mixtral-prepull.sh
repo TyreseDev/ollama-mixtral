@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Define variables
-BASE_IMAGE="ollama/ollama"
-CONTAINER_NAME="ollama-prepulled"
-IMAGE_NAME="ollama-prepulled"
+DOCKER_HUB_USER="tyrese3915"
+BASE_IMAGE="tyrese3915/runpod-ollama"
+CONTAINER_NAME="runpod-ollama-prepulled"
+IMAGE_NAME="runpod-ollama-prepulled"
 MODEL_NAME="mixtral"
 TAG_NAME="mixtral"
-DOCKER_HUB_USER="tyrese3915"
 
 # Log in to Docker Hub
 echo "Logging into Docker Hub..."
