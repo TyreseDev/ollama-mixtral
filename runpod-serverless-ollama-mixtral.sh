@@ -7,6 +7,16 @@ IMAGE_NAME="runpod-ollama"
 MODEL="mixtral"
 TAG_NAME="mixtral"
 
+# Login to Docker Hub
+echo "Logging in to Docker Hub..."
+docker login -u $DOCKER_HUB_USER
+
+# Check if login was successful
+if [[ $? -ne 0 ]]; then
+  echo "Docker login failed, exiting."
+  exit 1
+fi
+
 # Create a temporary directory
 TEMP_DIR=$(mktemp -d)
 echo "Temporary directory created at: $TEMP_DIR"
@@ -34,16 +44,6 @@ docker build -t $DOCKER_HUB_USER/$IMAGE_NAME:$TAG_NAME .
 # Check if build was successful
 if [[ $? -ne 0 ]]; then
   echo "Docker build failed, exiting."
-  exit 1
-fi
-
-# Login to Docker Hub
-echo "Logging in to Docker Hub..."
-docker login -u $DOCKER_HUB_USER
-
-# Check if login was successful
-if [[ $? -ne 0 ]]; then
-  echo "Docker login failed, exiting."
   exit 1
 fi
 
