@@ -2,7 +2,7 @@
 
 # Define variables
 DOCKER_HUB_USER="tyrese3915"
-BASE_IMAGE="ollama/ollama"
+BASE_IMAGE="ollama/ollama:latest"
 CONTAINER_NAME="ollama-prepulled"
 IMAGE_NAME="ollama-prepulled"
 MODEL_NAME="mixtral"

@@ -2,7 +2,7 @@
 
 # Define variables
 DOCKER_HUB_USER="tyrese3915"
-BASE_IMAGE="tyrese3915/runpod-ollama"
+BASE_IMAGE="tyrese3915/runpod-ollama:mixtral"
 CONTAINER_NAME="runpod-ollama-prepulled"
 IMAGE_NAME="runpod-ollama-prepulled"
 MODEL_NAME="mixtral"
